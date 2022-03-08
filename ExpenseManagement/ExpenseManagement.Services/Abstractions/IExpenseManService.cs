@@ -5,9 +5,9 @@ namespace ExpenseManagement.Services.Abstractions
 {
     public interface IExpenseManService
     {
-        Task AddExpenseAsync(Expense expense);
-        Task<List<Expense>> GetExpenseAllAsync();
-        Task UpdateExpenseAsync(Expense expense);
+        Task AddExpenseAsync(ExpenseServiceModel expense);
+        Task<List<ExpenseServiceModel>> GetExpenseAllAsync(Guid userId);
+        Task UpdateExpenseAsync(ExpenseServiceModel expense);
         Task DeleteExpense(Guid expenseId);
     }
 }

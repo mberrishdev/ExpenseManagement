@@ -15,7 +15,11 @@ namespace ExpenseManagement.PersistanceDB.Configuration
             builder.Property(x => x.UserName).IsUnicode(false).IsRequired().HasMaxLength(50);
 
             builder.Property(x => x.FirstName).IsRequired().HasMaxLength(50);
+
             builder.Property(x => x.LastName).IsRequired().HasMaxLength(50);
+
+            builder.Property(x => x.Email).IsRequired().HasMaxLength(50);
+
 
             builder.Property(x => x.Password).IsUnicode(false).IsRequired();
         }

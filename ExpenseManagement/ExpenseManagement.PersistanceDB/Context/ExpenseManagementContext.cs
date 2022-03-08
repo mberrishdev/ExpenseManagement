@@ -17,6 +17,7 @@ namespace ExpenseManagement.PersistanceDB.Context
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

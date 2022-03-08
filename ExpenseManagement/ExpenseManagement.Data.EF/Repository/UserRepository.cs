@@ -34,5 +34,10 @@ namespace ExpenseManagement.Data.EF.Repository
         {
             return await _baseRepository.Table.SingleOrDefaultAsync(x => x.UserName == username && x.Password == password);
         }
+
+        public async Task<User> GetAsync(string username)
+        {
+            return await _baseRepository.Table.SingleOrDefaultAsync(x => x.UserName == username);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ExpenseManagement.Domain.POCO;
+using Microsoft.EntityFrameworkCore;
 using RealEstateManagment.Data;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,11 @@ namespace ExpenseManagement.Data.EF.Repository
             _baseRepository = baseRepository;
         }
 
+        public async Task<List<Expense>> GetExpenseAllAsync(Guid userId)
+        {
+            return await _baseRepository.Table.Where(expense => expense.UserId == userId).ToListAsync();
+        }
+
         public Task AddExpenseAsync(Expense expense)
         {
             throw new NotImplementedException();
@@ -28,10 +34,6 @@ namespace ExpenseManagement.Data.EF.Repository
             throw new NotImplementedException();
         }
 
-        public Task<List<Expense>> GetExpenseAllAsync()
-        {
-            throw new NotImplementedException();
-        }
 
         public Task UpdateExpenseAsync(Expense expense)
         {

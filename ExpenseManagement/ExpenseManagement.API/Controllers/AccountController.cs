@@ -8,10 +8,10 @@ namespace ExpenseManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : BaseController
     {
         private readonly IAccountService _accountService;
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService) : base(accountService)
         {
             _accountService = accountService;
         }
@@ -27,7 +27,7 @@ namespace ExpenseManagement.API.Controllers
         [HttpPost("RegisterAccount")]
         public async Task<IActionResult> RegisterAccount(SignUpRequest request)
         {
-            var result = await _accountService.RegisterAccountAsync(request.Adapt<UserServiceModel>());
+            var result = await _accountService.RegisterAccountAsync(request.Adapt<UserRequestServiceModel>());
             return Ok(result);
 
         }

@@ -1,11 +1,8 @@
 ﻿using ExpenseManagement.Data;
+using ExpenseManagement.Domain.POCO;
 using ExpenseManagement.Services.Abstractions;
 using ExpenseManagement.Services.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Mapster;
 
 namespace ExpenseManagement.Services.Implementations
 {
@@ -18,22 +15,34 @@ namespace ExpenseManagement.Services.Implementations
             _expenseRepository = expenseRepository;
         }
 
-        public Task AddExpenseAsync(Expense expense)
+        public async Task<List<ExpenseServiceModel>> GetExpenseAllAsync(Guid userId)
         {
-            throw new NotImplementedException();
+            var result = await _expenseRepository.GetExpenseAllAsync(userId);
+
+            return result.Select(expense => new ExpenseServiceModel()
+            {
+                Id = expense.Id,
+                Name = expense.Name,
+                Price = expense.Price,
+                Currency = expense.Currency,
+                Date = expense.Date
+            }).ToList();
         }
 
-        public Task DeleteExpense(Guid expenseId)
+
+        //ToDo: we neet to add one to many relationship between User and Expense
+
+        public async Task AddExpenseAsync(ExpenseServiceModel expense)
         {
-            throw new NotImplementedException();
+            await _expenseRepository.AddExpenseAsync(expense.Adapt<Expense>());
         }
 
-        public Task<List<Expense>> GetExpenseAllAsync()
+        public async Task DeleteExpense(Guid expenseId)
         {
-            throw new NotImplementedException();
+            await _expenseRepository.DeleteExpense(expenseId);
         }
 
-        public Task UpdateExpenseAsync(Expense expense)
+        public Task UpdateExpenseAsync(ExpenseServiceModel expense)
         {
             throw new NotImplementedException();
         }

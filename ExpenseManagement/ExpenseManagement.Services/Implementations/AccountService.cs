@@ -31,7 +31,7 @@ namespace ExpenseManagement.Services.Implementations
             return _jwtService.GenerateSecurityToken(userEntity.UserName);
         }
 
-        public async Task<Guid> RegisterAccountAsync(UserServiceModel user)
+        public async Task<Guid> RegisterAccountAsync(UserRequestServiceModel user)
         {
             if (await _userRepository.Exists(user.UserName))
                 throw new AlreadyExistException($"{user.UserName} already exist").AddApiError(400, $"{user.UserName} already exist");
@@ -41,6 +41,14 @@ namespace ExpenseManagement.Services.Implementations
 
             return await _userRepository.CreateAsync(user.Adapt<User>());
         }
+
+        public async Task<UserServiceModel> GetUserAsync(string username)
+        {
+            var result = await _userRepository.GetAsync(username);
+
+            return result.Adapt<UserServiceModel>();
+        }
+
 
         private static string GenerateMD5Hash(string input)
         {
@@ -56,6 +64,5 @@ namespace ExpenseManagement.Services.Implementations
 
             return sb.ToString();
         }
-
     }
 }

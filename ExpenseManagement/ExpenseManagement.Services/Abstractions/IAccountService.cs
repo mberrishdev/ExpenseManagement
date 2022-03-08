@@ -10,7 +10,8 @@ namespace ExpenseManagement.Services.Abstractions
 {
     public interface IAccountService
     {
-        Task<Guid> RegisterAccountAsync(UserServiceModel account);
+        Task<Guid> RegisterAccountAsync(UserRequestServiceModel account);
         Task<JwtToken> AuthenticateAsync(string username, string password);
+        Task<UserServiceModel> GetUserAsync(string username);
     }
 }
