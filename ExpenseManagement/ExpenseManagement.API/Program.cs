@@ -1,6 +1,8 @@
 using ExpenseManagement.API.Infrastracture.Extensions;
 using ExpenseManagement.API.Infrastracture.Mappings;
+using ExpenseManagement.PersistanceDB.Context;
 using ExpenseManagement.Services.Models.Jwt;
+using Microsoft.EntityFrameworkCore;
 
 IConfiguration configuration = new ConfigurationBuilder()
                             .AddJsonFile("appsettings.json")
@@ -10,16 +12,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.Configure<JwtConfiguration>(configuration.GetSection(nameof(JwtConfiguration)));
-
 builder.Services.AddControllers();
 builder.Services.AddServices();
 builder.Services.RegisterMaps();
-builder.Services.AddTokenAuthentication(configuration);
+
+
+builder.Services.Configure<JwtConfiguration>(configuration.GetSection(nameof(JwtConfiguration)));
+
+builder.Services.AddDbContext<ExpenseManagementContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddTokenAuthentication(configuration);
 
 var app = builder.Build();
 

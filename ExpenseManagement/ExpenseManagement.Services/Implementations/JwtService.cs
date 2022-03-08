@@ -26,7 +26,7 @@ namespace ExpenseManagement.Services.Implementations
         public JwtToken GenerateSecurityToken(string userName)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_secret);
+            var key = Encoding.UTF8.GetBytes(_secret);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {

@@ -1,5 +1,7 @@
 ﻿using ExpenseManagement.API.Models.Requests;
-using Microsoft.AspNetCore.Http;
+using ExpenseManagement.Services.Abstractions;
+using ExpenseManagement.Services.Models.Account;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseManagement.API.Controllers
@@ -8,21 +10,26 @@ namespace ExpenseManagement.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        public AccountController()
+        private readonly IAccountService _accountService;
+        public AccountController(IAccountService accountService)
         {
+            _accountService = accountService;
         }
 
         [HttpPost("AuthenticateAccount")]
         public async Task<IActionResult> AuthenticateAccount(LogInRequest request)
         {
-
-            return Ok();
+            var result = await _accountService.AuthenticateAsync(request.Username, request.Password);
+            return Ok(result);
         }
+
 
         [HttpPost("RegisterAccount")]
         public async Task<IActionResult> RegisterAccount(SignUpRequest request)
         {
-            return Ok();
+            var result = await _accountService.RegisterAccountAsync(request.Adapt<UserServiceModel>());
+            return Ok(result);
+
         }
     }
 
