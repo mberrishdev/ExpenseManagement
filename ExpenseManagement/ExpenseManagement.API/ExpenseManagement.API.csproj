@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastracture\Mappings\" />
+    <ProjectReference Include="..\ExpenseManagement.Services\ExpenseManagement.Services.csproj" />
   </ItemGroup>
 
 </Project>
