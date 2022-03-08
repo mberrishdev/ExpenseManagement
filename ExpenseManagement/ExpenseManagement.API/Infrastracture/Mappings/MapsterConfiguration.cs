@@ -30,7 +30,11 @@ namespace ExpenseManagement.API.Infrastracture.Mappings
             TypeAdapterConfig<ExpenseServiceModel, Expense>
             .NewConfig()
             .TwoWays();
-            
+
+            TypeAdapterConfig<ExpenseServiceModel, Models.Responses.Expense>
+            .NewConfig()
+            .TwoWays();
+
         }
     }
 }

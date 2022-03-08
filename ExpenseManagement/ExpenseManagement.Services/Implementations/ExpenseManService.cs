@@ -29,13 +29,22 @@ namespace ExpenseManagement.Services.Implementations
             }).ToList();
         }
 
+        public async Task AddExpenseAsync(ExpenseServiceModel expense, Guid userId)
+        {
+            Expense newExpense = new Expense()
+            {
+                UserId = userId,
+                Name = expense.Name,
+                Price = expense.Price,
+                Currency = expense.Currency,
+                Date = expense.Date
+            };
+
+            await _expenseRepository.AddExpenseAsync(newExpense);
+        }
 
         //ToDo: we neet to add one to many relationship between User and Expense
 
-        public async Task AddExpenseAsync(ExpenseServiceModel expense)
-        {
-            await _expenseRepository.AddExpenseAsync(expense.Adapt<Expense>());
-        }
 
         public async Task DeleteExpense(Guid expenseId)
         {
@@ -46,5 +55,6 @@ namespace ExpenseManagement.Services.Implementations
         {
             throw new NotImplementedException();
         }
+
     }
 }

@@ -24,9 +24,9 @@ namespace ExpenseManagement.Data.EF.Repository
             return await _baseRepository.Table.Where(expense => expense.UserId == userId).ToListAsync();
         }
 
-        public Task AddExpenseAsync(Expense expense)
+        public async Task AddExpenseAsync(Expense expense)
         {
-            throw new NotImplementedException();
+            await _baseRepository.AddAsync(expense);
         }
 
         public Task DeleteExpense(Guid expenseId)
