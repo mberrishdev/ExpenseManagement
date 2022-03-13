@@ -1,0 +1,28 @@
+.sign-Up__controls {
+  scrollbar-width: none;
+  margin: auto;
+  padding: 100px 0;
+  width: 30%;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.sign-Up__input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.sign-Up__input input {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 3px solid red;
+  width: 20rem;
+  max-width: 100%;
+  background-color: rgb(255, 195, 195);
+}

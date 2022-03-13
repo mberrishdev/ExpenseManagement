@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./SignUpForm.css";
 const SignUpForm = (props) => {
   const [enteredFirstName, setEnteredFirstName] = useState("");
   const [enteredSecondName, setEnteredSecondName] = useState("");
@@ -33,9 +33,9 @@ const SignUpForm = (props) => {
     const signUpRequest = {
       userName: enteredUserName,
       firstName: enteredFirstName,
-      secondName:enteredSecondName,
+      secondName: enteredSecondName,
       password: enteredPassword,
-      email:enteredEmail,
+      email: enteredEmail,
     };
 
     //ToDo send request;
@@ -43,10 +43,9 @@ const SignUpForm = (props) => {
   };
 
   return (
-    <div className="row h-100 justify-content-center align-items-center">
-      <form className="w-25 p-3 " onSubmit={sumbitHandler}>
-        <div className="form-group">
-          {/* <label>First Name</label> */}
+    <form onSubmit={sumbitHandler}>
+      <div className="sign-Up__controls">
+        <div className="sign-Up__input">
           <input
             type="text"
             className="form-control"
@@ -55,7 +54,7 @@ const SignUpForm = (props) => {
             onChange={FirstNameChangeHandler}
           />
         </div>
-        <div className="form-group">
+        <div className="sign-Up__input">
           {/* <label>Last Name</label> */}
           <input
             type="text"
@@ -65,7 +64,7 @@ const SignUpForm = (props) => {
             onChange={SecondNameChangeHandler}
           />
         </div>
-        <div className="form-group">
+        <div className="sign-Up__input">
           {/* <label>UserName</label> */}
           <input
             type="text"
@@ -75,7 +74,7 @@ const SignUpForm = (props) => {
             onChange={UserNameChangeHandler}
           />
         </div>
-        <div className="form-group">
+        <div className="sign-Up__input">
           {/* <label>Email address</label> */}
           <input
             type="email"
@@ -85,7 +84,7 @@ const SignUpForm = (props) => {
             onChange={EmailChangeHandler}
           />
         </div>
-        <div className="form-group">
+        <div className="sign-Up__input">
           {/* <label>Password</label> */}
           <input
             type="password"
@@ -95,23 +94,11 @@ const SignUpForm = (props) => {
             onChange={PasswordChangeHandler}
           />
         </div>
-        <div className="form-group form-check">
-          <label>
-            <a className="btn btn-primary btn-sm active" href="#" role="button">
-              Terms & Conditions
-            </a>
-          </label>
-          <input
-            type="checkbox"
-            className="form-check-input"
-          />
-        </div>
-        <button type="button">
-          Cancel
-        </button>
-        <button type="submit">Sign Up</button>
-      </form>
-    </div>
+        <p>If you already have an account please <a href="#">Sign-In</a>.</p>
+        <button type="submit" className="btn btn-primary mb1 bg-red">Sign Up</button>
+        <button type="button" className="btn btn-primary mb1 bg-blue">Cancel</button>
+      </div>
+    </form>
   );
 };
 
