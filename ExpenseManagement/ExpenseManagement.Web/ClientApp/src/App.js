@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Expenses from "./componets/Expenses/Expenses";
 import NewExpense from "./componets/NewExpense/NewExpense";
+import SignUpForm from "./componets/SignUp/SignUpForm";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const DUMMY_EXPENSES = [
   {
@@ -33,8 +35,9 @@ const App = () => {
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses expenses={expenses} />
+      <SignUpForm></SignUpForm>
+      {/* <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses expenses={expenses} /> */}
     </div>
   );
 };

@@ -51,9 +51,9 @@ namespace ExpenseManagement.Services.Implementations
             await _expenseRepository.DeleteExpense(expenseId);
         }
 
-        public Task UpdateExpenseAsync(ExpenseServiceModel expense)
+        public async Task UpdateExpenseAsync(ExpenseServiceModel expense)
         {
-            throw new NotImplementedException();
+            await _expenseRepository.UpdateExpenseAsync(expense.Adapt<Expense>());
         }
 
     }
